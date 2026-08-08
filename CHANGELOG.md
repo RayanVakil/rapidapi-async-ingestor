@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - Modularization & Build Pipeline
+
+### Added
+- Created `src/processing.py` to handle pandas DataFrame construction and validation logic cleanly.
+- Created `src/visual.py` to encapsulate the seaborn/matplotlib visualization logic (horizontal bar chart).
+- Added `build.py`, a custom build script that intelligently concatenates the multi-file architecture into a single `script_Rayan_Vakil.txt` file, automatically stripping internal import paths.
+
 ## [1.0.0] - Initial Setup (Dual Strategy Phase 1)
 
 ### Added

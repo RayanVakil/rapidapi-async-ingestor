@@ -11,6 +11,8 @@ from dotenv import load_dotenv
 
 from src.client import AsyncCarAPIClient, MaxRetriesExceededError
 from src.models.schemas import MileageResponse
+from src.processing import process_mileage_data
+from src.visual import generate_fuel_capacity_chart
 
 # Configure structured, professional logging
 logging.basicConfig(
@@ -93,86 +95,33 @@ async def main():
             logger.error(f"Question 3 Failed: {e}")
 
         # ---------------------------------------------------------
-        # Question 4: Mileage Data Frame
+        # Question 4: Mileage Data Frame (Concurrent Fetch & Process)
         # ---------------------------------------------------------
         target_ids = [7559, 7081, 8542, 6968, 6363]
         logger.info(f"Executing Question 4: Fetching mileage data concurrently for IDs {target_ids}")
         
-        # Concurrently fetch all mileage data for max performance
+        # Concurrently fetch all mileage data for max I/O throughput
         mileage_tasks = [client.get_mileage(vid) for vid in target_ids]
         mileage_results = await asyncio.gather(*mileage_tasks, return_exceptions=True)
 
-        rows = []
-        for vid, result in zip(target_ids, mileage_results):
-            if isinstance(result, Exception):
-                logger.error(f"Failed to fetch mileage for {vid}: {result}")
-                continue
-            
-            try:
-                # Type validation via Pydantic
-                validated = MileageResponse(**result)
-                data = validated.data
-                vehicle_name = f"{data.make_model_trim.make_model.make.name} {data.make_model_trim.make_model.name}"
-                
-                rows.append({
-                    "Vehicle Name": vehicle_name,
-                    "Combined MPG": data.combined_mpg,
-                    "MSRP": data.make_model_trim.msrp,
-                    "Fuel Tank Capacity": data.fuel_tank_capacity
-                })
-            except Exception as e:
-                logger.error(f"Failed to parse mileage data for {vid}: {e}")
-
-        df = pd.DataFrame(rows)
-        csv_filename = f"mileage_{YOUR_FULL_NAME}.csv"
-        df.to_csv(csv_filename, index=False)
-        print(f"---> Question 4 (Data Frame exported to CSV): {csv_filename}\n")
+        # Delegate validation, structuring, and export to processing module
+        df = process_mileage_data(
+            target_ids=target_ids, 
+            mileage_results=mileage_results, 
+            output_filename="mileage_Rayan_Vakil.csv"
+        )
 
         # ---------------------------------------------------------
         # Question 5: Professional Bar Chart
         # ---------------------------------------------------------
-        logger.info("Executing Question 5: Generating professional bar chart")
-        if df.empty:
-            logger.error("Dataframe is empty, cannot generate chart.")
-            return
-
-        # Sort the bars in ascending order of Fuel Tank Capacity
-        df_sorted = df.sort_values(by="Fuel Tank Capacity", ascending=True).reset_index(drop=True)
+        logger.info("Executing Question 5: Generating professional horizontal bar chart")
         
-        # Enterprise-ready styling setup
-        plt.figure(figsize=(10, 6))
-        sns.set_theme(style="whitegrid", font_scale=1.1)
-
-        # Coterie brand color (Red-Orange) for the highlight, Navy for muted
-        highlight_color = "#E03C31" 
-        muted_color = "#2C3E50"     
-
-        # Programmatically identify the bar with the largest fuel tank capacity
-        max_idx = df_sorted["Fuel Tank Capacity"].idxmax()
-        colors_palette = [highlight_color if i == max_idx else muted_color for i in range(len(df_sorted))]
-
-        # Generate the bar plot
-        ax = sns.barplot(
-            x="Vehicle Name", 
-            y="Fuel Tank Capacity", 
-            data=df_sorted, 
-            hue="Vehicle Name",
-            palette=colors_palette,
-            legend=False
+        # Delegate visualization generation and export to visual module
+        generate_fuel_capacity_chart(
+            df=df, 
+            output_filename="fuel_capacity_chart_Rayan_Vakil.jpeg"
         )
-
-        ax.set_title("Fuel Tank Capacity by Vehicle", fontsize=16, fontweight='bold', pad=20)
-        ax.set_xlabel("Vehicle Name", fontsize=12, labelpad=10)
-        ax.set_ylabel("Fuel Tank Capacity (Gallons)", fontsize=12, labelpad=10)
-
-        # Remove top and right spines as requested
-        sns.despine(top=True, right=True)
-        plt.xticks(rotation=30, ha="right")
-        plt.tight_layout()
-
-        chart_filename = f"fuel_capacity_chart_{YOUR_FULL_NAME}.jpeg"
-        plt.savefig(chart_filename, format="jpeg", dpi=300)
-        print(f"---> Question 5 (Chart exported to JPEG): {chart_filename}\n")
+        
         logger.info("All assessment questions executed successfully.")
 
 if __name__ == "__main__":

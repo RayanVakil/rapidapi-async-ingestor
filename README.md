@@ -52,5 +52,14 @@ source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 pip install -r requirements.txt
 ```
 
-### 3. Execution (Coming Soon)
-We are currently staging the `httpx` execution logic. Once finalized, a build step will be provided to compile this pipeline into the requested single script format.
+### 3. Execution & Build Step
+This repository is designed using a multi-file architecture for maintainability. To run the data ingestion pipeline, you can execute the main script:
+```bash
+python src/main.py
+```
+
+To compile this modular architecture into a single standalone script (e.g., for specific deployment or assessment constraints), run the build script:
+```bash
+python build.py
+```
+This will generate `script_Rayan_Vakil.txt` in the root directory.
