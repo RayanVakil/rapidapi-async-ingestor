@@ -1,0 +1,27 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# AI Directives 
+GEMINI.md
+assessment_instructions.md
+
+# Python Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Output files
+*.csv
+*.jpeg
+*.png
+script_*.txt
+
+# OS generated files
+.DS_Store
+Thumbs.db
