@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - Architectural Audit & Surgical Fixes
+
+### Added
+- Created `audit.md`, a comprehensive Staff-level architectural audit analyzing the pipeline's strengths, vulnerabilities, and a definitive technical teardown of the RapidAPI 403 anomaly.
+- Added `audit.md` to `.gitignore` to keep it out of the public repo history if desired, though tracking it locally for documentation.
+
+### Fixed
+- Surgically patched a bug in `src/main.py` where the `YOUR_FULL_NAME` placeholder variable was not properly wired into the output filenames (`mileage_Rayan_Vakil.csv` and `fuel_capacity_chart_Rayan_Vakil.jpeg`). Outputs now dynamically reflect the placeholder.
+
 ## [1.1.0] - Modularization & Build Pipeline
 
 ### Added

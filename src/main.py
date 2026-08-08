@@ -4,6 +4,7 @@ import sys
 import math
 import asyncio
 import logging
+import httpx
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -48,6 +49,8 @@ async def main():
             print(f"\n---> Question 1 (Unique Colors Count): {len(unique_colors)}\n")
         except MaxRetriesExceededError as e:
             logger.error(f"Question 1 Failed: {e}")
+        except httpx.HTTPStatusError as e:
+            logger.error(f"Question 1 Blocked by API: {e.response.status_code} {e.response.text}")
 
         # ---------------------------------------------------------
         # Question 2: Subaru Outback Introduction Year
@@ -68,6 +71,8 @@ async def main():
                 logger.warning("Question 2: No years found.")
         except MaxRetriesExceededError as e:
             logger.error(f"Question 2 Failed: {e}")
+        except httpx.HTTPStatusError as e:
+            logger.error(f"Question 2 Blocked by API: {e.response.status_code} {e.response.text}")
 
         # ---------------------------------------------------------
         # Question 3: Average Curb Weight
@@ -93,6 +98,8 @@ async def main():
                 logger.warning("Question 3: No curb_weight data found.")
         except MaxRetriesExceededError as e:
             logger.error(f"Question 3 Failed: {e}")
+        except httpx.HTTPStatusError as e:
+            logger.error(f"Question 3 Blocked by API: {e.response.status_code} {e.response.text}")
 
         # ---------------------------------------------------------
         # Question 4: Mileage Data Frame (Concurrent Fetch & Process)
@@ -108,7 +115,7 @@ async def main():
         df = process_mileage_data(
             target_ids=target_ids, 
             mileage_results=mileage_results, 
-            output_filename="mileage_Rayan_Vakil.csv"
+            output_filename=f"mileage_{YOUR_FULL_NAME}.csv"
         )
 
         # ---------------------------------------------------------
@@ -119,7 +126,7 @@ async def main():
         # Delegate visualization generation and export to visual module
         generate_fuel_capacity_chart(
             df=df, 
-            output_filename="fuel_capacity_chart_Rayan_Vakil.jpeg"
+            output_filename=f"fuel_capacity_chart_{YOUR_FULL_NAME}.jpeg"
         )
         
         logger.info("All assessment questions executed successfully.")

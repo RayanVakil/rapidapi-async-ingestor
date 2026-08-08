@@ -10,6 +10,7 @@ venv.bak/
 # AI Directives 
 GEMINI.md
 assessment_instructions.md
+audit.md
 
 # Python Byte-compiled / optimized / DLL files
 __pycache__/

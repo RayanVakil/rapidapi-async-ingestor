@@ -22,7 +22,7 @@ Built with enterprise-grade reliability in mind, this project demonstrates how t
 
 This repository showcases an enterprise-grade multi-file structure within the `src/` directory.
 
-For a deep dive into the architectural decisions and modular design, please refer to the [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md).
+For a deep dive into the architectural decisions and modular design, please refer to the [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md). For a comprehensive read-only architectural audit of the pipeline, see [audit.md](audit.md).
 
 ---
 
