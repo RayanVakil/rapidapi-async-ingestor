@@ -18,4 +18,8 @@ The `rapidapi-async-ingestor` is designed to be a highly performant, resilient, 
 - **Data Transformation:** Converts validated Pydantic models directly into `pandas.DataFrame` structures for downstream analysis and persistence (CSV generation).
 - **Visualization:** Utilizes `seaborn` and `matplotlib` to generate programmatically styled, presentation-ready business intelligence charts (JPEG generation).
 
+### 4. Containerization (`Dockerfile`)
+- **Multi-Stage Build:** Employs a multi-stage Docker build to isolate dependency installation from the runtime environment, producing a lean final image.
+- **Security Posture:** Configured to execute as a restricted, non-root user (`appuser`) conforming to modern production security standards.
+
 *Note: As part of the Dual Strategy build pipeline, this `src/` codebase acts as our rich, testable core. A post-processing script will later bundle this into the single `.py` file required for final submission.*

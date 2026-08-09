@@ -63,3 +63,12 @@ To compile this modular architecture into a single standalone script (e.g., for 
 python build.py
 ```
 This will generate `script_Rayan_Vakil.txt` in the root directory.
+
+### 4. Docker (Containerized Execution)
+For a production-ready, containerized execution environment, build and run the Docker image:
+
+```bash
+docker build -t rapidapi-async-ingestor .
+docker run --rm --env-file .env rapidapi-async-ingestor
+```
+*Note: Ensure your `.env` file contains `RAPIDAPI_KEY` as it is injected at runtime and safely excluded from the image.*

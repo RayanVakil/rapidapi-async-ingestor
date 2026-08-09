@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - Docker Containerization
+
+### Added
+- Implemented a lightweight, multi-stage `Dockerfile` using `python:3.10-slim` for secure, production-grade containerized execution as a non-root user.
+- Added `.dockerignore` to exclude local environments, git history, and AI directives from the build context.
+
 ## [1.2.0] - Architectural Audit & Surgical Fixes
 
 ### Added
