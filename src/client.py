@@ -80,4 +80,4 @@ class AsyncCarAPIClient:
 
     async def get_mileage(self, vehicle_id: int) -> Dict[str, Any]:
         # Utilizing query params for the collection endpoint
-        return await self._request_with_retry("/api/mileages", params={"id": vehicle_id})
+        return await self._request_with_retry("/api/mileages", params={"make_model_trim_id": vehicle_id, "verbose": "yes"})

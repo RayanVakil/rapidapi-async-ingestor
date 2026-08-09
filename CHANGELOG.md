@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - RapidAPI Configuration and Schema Adjustments
+
+### Fixed
+- Updated `.env` with a valid active RapidAPI key to resolve `403 Forbidden` errors.
+- Applied a surgical patch to `src/main.py` allowing proper parsing of raw JSON array responses from the `/api/years` endpoint.
+- Updated `src/client.py` API parameters for the `mileages` endpoint to pass `make_model_trim_id` instead of `id` and added the `verbose=yes` flag to ensure the nested `make_model_trim` object is included in the response, fixing Pydantic validation errors.
+- Cleaned up transient test scripts and generated test outputs (`test_schemas.py`, `mileage_test.csv`, `fuel_capacity_chart_test.jpeg`) from the root directory to maintain repository hygiene.
+
 ## [1.3.0] - Docker Containerization
 
 ### Added

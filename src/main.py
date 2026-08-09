@@ -58,7 +58,7 @@ async def main():
         logger.info("Executing Question 2: Fetching available years for Subaru Outback")
         try:
             q2_data = await client.get_years(make="Subaru", model="Outback")
-            years_list = q2_data.get("data", [])
+            years_list = q2_data if isinstance(q2_data, list) else q2_data.get("data", [])
             parsed_years = []
             for y in years_list:
                 if isinstance(y, dict) and "year" in y:
