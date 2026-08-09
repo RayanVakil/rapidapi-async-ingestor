@@ -55,7 +55,7 @@ pip install -r requirements.txt
 ### 3. Execution & Build Step
 This repository is designed using a multi-file architecture for maintainability. To run the data ingestion pipeline, you can execute the main script:
 ```bash
-python src/main.py
+python -m src.main
 ```
 
 To compile this modular architecture into a single standalone script (e.g., for specific deployment or assessment constraints), run the build script:

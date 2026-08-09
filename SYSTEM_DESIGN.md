@@ -22,4 +22,4 @@ The `rapidapi-async-ingestor` is designed to be a highly performant, resilient, 
 - **Multi-Stage Build:** Employs a multi-stage Docker build to isolate dependency installation from the runtime environment, producing a lean final image.
 - **Security Posture:** Configured to execute as a restricted, non-root user (`appuser`) conforming to modern production security standards.
 
-*Note: As part of the Dual Strategy build pipeline, this `src/` codebase acts as our rich, testable core. A post-processing script will later bundle this into the single `.py` file required for final submission.*
+*Note: As part of the Dual Strategy build pipeline, this `src/` codebase acts as our rich, testable core. A post-processing script will later bundle this into the single `.txt` file required for final submission.*
