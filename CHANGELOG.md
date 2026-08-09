@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.1] - Final Polish & Corporate Styling
+
+### Changed
+- Updated the primary visualization highlight color in `src/visual.py` to match Coterie's corporate hex code (`#F05A28`).
+- Updated the `YOUR_FULL_NAME` placeholder in `src/main.py` to finalize the assessment output filenames and metadata.
+
+
 ## [1.4.0] - RapidAPI Configuration and Schema Adjustments
 
 ### Fixed

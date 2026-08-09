@@ -21,7 +21,7 @@ def generate_fuel_capacity_chart(df: pd.DataFrame, output_filename: str = "fuel_
     sns.set_theme(style="whitegrid", font_scale=1.1)
 
     # Sharp Teal for the highlight, Muted Navy for the rest
-    highlight_color = "#008080" 
+    highlight_color = "#F05A28" 
     muted_color = "#34495E"     
 
     # Programmatically identify the bar with the largest fuel tank capacity

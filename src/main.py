@@ -24,7 +24,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # User: Swap this out for your actual full name as per assessment instructions
-YOUR_FULL_NAME = "FirstName_LastName"
+YOUR_FULL_NAME = "Rayan_Vakil"
 
 async def main():
     load_dotenv()
